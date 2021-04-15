@@ -1,9 +1,34 @@
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './App.css'
 
-import React, { Component } from 'react'
+import React, { Component, useState } from 'react'
 import { Button } from 'react-bootstrap'
 
+function App() {
+  const [count, setCount] = useState(0)
+  const clickFunc = () => {
+    setCount(count + 1)
+  }
+
+  return (
+      <React.Fragment>
+        <h1 className="bg-primary text-white display-4">React</h1>
+        <div className="container">
+          <h4 className="my-3">Hooks Sample</h4>
+          <div className="alert alert-primary text-center">
+            <p className="h5 mb-3">click: {count} times!</p>
+            <div>
+              <button className="btn btn-primary" onClick={clickFunc}>Click me</button>
+            </div>
+          </div>
+        </div>
+      </React.Fragment>
+  )
+}
+
+
+
+// contextTypeを使ったサンプル
 let data = {
   title: 'React-Context',
   message: 'this is sample message.'
@@ -11,16 +36,16 @@ let data = {
 
 const SampleContext = React.createContext(data)
 
-class App extends Component {
+class sample3 extends Component {
   render(){
     return(
-      <React.Fragment>
-        <h1 className="bg-primary text-white display-4">React</h1>
-        <div className="container">
-          <Title />
-          <Message />
-        </div>
-      </React.Fragment>
+        <React.Fragment>
+          <h1 className="bg-primary text-white display-4">React</h1>
+          <div className="container">
+            <Title />
+            <Message />
+          </div>
+        </React.Fragment>
     )
   }
 }
@@ -30,9 +55,9 @@ class Title extends Component {
 
   render(){
     return (
-      <div className="card p-2 my-3">
-        <h2>{this.context.title}</h2>
-      </div>
+        <div className="card p-2 my-3">
+          <h2>{this.context.title}</h2>
+        </div>
     )
   }
 }
@@ -42,9 +67,9 @@ class Message extends Component {
 
   render(){
     return (
-      <div className="alert alert-primary">
-        <p>{this.context.message}</p>
-      </div>
+        <div className="alert alert-primary">
+          <p>{this.context.message}</p>
+        </div>
     )
   }
 }
