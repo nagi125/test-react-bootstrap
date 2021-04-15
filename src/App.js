@@ -5,6 +5,39 @@ import React, { Component, useState } from 'react'
 import { Button } from 'react-bootstrap'
 
 function App() {
+  return (
+      <React.Fragment>
+        <h1 className="bg-primary text-white display-4"></h1>
+        <div className="container">
+          <h4 className="my-3">Hooks sample</h4>
+          <AlertMessage />
+          <CardMessage />
+        </div>
+      </React.Fragment>
+  )
+}
+
+function AlertMessage() {
+  return (
+      <React.Fragment>
+        <div className="alert alert-primary h5 text-primary">
+          This is Alert message!
+        </div>
+      </React.Fragment>
+  )
+}
+
+function CardMessage() {
+  return (
+      <React.Fragment>
+        <div className="card p-3 h5 border-primary text-center">
+          This is Card Message!
+        </div>
+      </React.Fragment>
+  )
+}
+
+function Sample4() {
   const [count, setCount] = useState(0)
   const [flag, setFlag]   = useState(false)
 
