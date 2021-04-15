@@ -4,7 +4,53 @@ import './App.css'
 import React, { Component } from 'react'
 import { Button } from 'react-bootstrap'
 
+let data = {
+  title: 'React-Context',
+  message: 'this is sample message.'
+}
+
+const SampleContext = React.createContext(data)
+
 class App extends Component {
+  render(){
+    return(
+      <React.Fragment>
+        <h1 className="bg-primary text-white display-4">React</h1>
+        <div className="container">
+          <Title />
+          <Message />
+        </div>
+      </React.Fragment>
+    )
+  }
+}
+
+class Title extends Component {
+  static contextType = SampleContext
+
+  render(){
+    return (
+      <div className="card p-2 my-3">
+        <h2>{this.context.title}</h2>
+      </div>
+    )
+  }
+}
+
+class Message extends Component {
+  static contextType = SampleContext
+
+  render(){
+    return (
+      <div className="alert alert-primary">
+        <p>{this.context.message}</p>
+      </div>
+    )
+  }
+}
+
+// Form サンプル
+class Sample2 extends Component {
   input = ''
 
   constructor(props) {
@@ -42,6 +88,8 @@ class App extends Component {
             <form onSubmit={this.doSubmit}>
               <div className="form-group">
                 <label htmlFor="hoge">Message:</label>
+
+                {/* requiredで必須 patternで特定パターンのバリデーション */}
                 <input id="hoge" type="text" className="form-control"
                        onChange={this.doChange}
                        required pattern="[A-Za-z _,.]+" />
