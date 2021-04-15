@@ -1,5 +1,7 @@
-import React, { Component } from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css'
+import './App.css'
+
+import React, { Component } from 'react'
 import { Button } from 'react-bootstrap'
 
 class App extends Component {
@@ -40,7 +42,9 @@ class App extends Component {
             <form onSubmit={this.doSubmit}>
               <div className="form-group">
                 <label htmlFor="hoge">Message:</label>
-                <input id="hoge" type="text" className="form-control" onChange={this.doChange} />
+                <input id="hoge" type="text" className="form-control"
+                       onChange={this.doChange}
+                       required pattern="[A-Za-z _,.]+" />
               </div>
               <input type="submit" className="btn btn-primary" value="Click"/>
             </form>
