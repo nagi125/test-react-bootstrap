@@ -5,33 +5,35 @@ import React, { Component, useState } from 'react'
 import { Button } from 'react-bootstrap'
 
 function App() {
+  const [msg] = useState("This is sample message!")
+
   return (
       <React.Fragment>
         <h1 className="bg-primary text-white display-4"></h1>
         <div className="container">
           <h4 className="my-3">Hooks sample</h4>
-          <AlertMessage />
-          <CardMessage />
+          <AlertMessage message={msg} />
+          <CardMessage message={msg} />
         </div>
       </React.Fragment>
   )
 }
 
-function AlertMessage() {
+function AlertMessage(props) {
   return (
       <React.Fragment>
         <div className="alert alert-primary h5 text-primary">
-          This is Alert message!
+          { props.message }
         </div>
       </React.Fragment>
   )
 }
 
-function CardMessage() {
+function CardMessage(props) {
   return (
       <React.Fragment>
         <div className="card p-3 h5 border-primary text-center">
-          This is Card Message!
+          { props.message }
         </div>
       </React.Fragment>
   )
