@@ -4,7 +4,93 @@ import './App.css'
 import React, { Component, useState } from 'react'
 import { Button } from 'react-bootstrap'
 
+function AlertMessage(props) {
+  const data = props.data
+  const msg = JSON.stringify(data)
+
+  return (
+      <React.Fragment>
+        <div className="alert alert-primary h5 text-primary">
+          <h5>{msg}</h5>
+          <hr />
+          <table className="table h6">
+            <tbody>
+            <tr>
+              <th>Name</th>
+              <td>{data.name}</td>
+            </tr>
+            <tr>
+              <th>Mail</th>
+              <td>{data.mail}</td>
+            </tr>
+            <tr>
+              <th>Age</th>
+              <td>{data.age}</td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </React.Fragment>
+  )
+}
+
 function App() {
+  const [name, setName] = useState("")
+  const [mail, setMail] = useState("")
+  const [age, setAge]   = useState(0)
+  const [form, setForm] = useState({
+    name: 'no name',
+    mail: 'no mail',
+    age: 0
+  })
+
+  const doChangeName = (event) => {
+    setName(event.target.value)
+  }
+
+  const doChangeMail = (event) => {
+    setMail(event.target.value)
+  }
+
+  const doChangeAge = (event) => {
+    setAge(event.target.value)
+  }
+
+  const doSubmit = (event) => {
+    setForm({name: name, mail: mail, age: age})
+    event.preventDefault()
+  }
+
+  return (
+      <React.Fragment>
+        <h1 className="bg-primary text-white display-4">React</h1>
+        <div className="container">
+          <h4 className="my-3">Hooks sample</h4>
+          <AlertMessage data={form} setData={setForm} />
+          <form onSubmit={doSubmit}>
+            <div className="form-group">
+              <label>Name:</label>
+              <input type="text" className="form-control" onChange={doChangeName}/>
+            </div>
+            <div className="form-group">
+              <label>Mail:</label>
+              <input type="text" className="form-control" onChange={doChangeMail}/>
+            </div>
+            <div className="form-group">
+              <label>Age:</label>
+              <input type="number" className="form-control" onChange={doChangeAge}/>
+            </div>
+            <input type="submit" className="btn btn-primary" value="Click"/>
+          </form>
+        </div>
+      </React.Fragment>
+  )
+
+}
+
+
+
+function Sample5() {
   const [alert, setAlert] = useState("This is alert message!")
   const [card, setCard]   = useState("This is alert message!")
 
@@ -13,8 +99,8 @@ function App() {
         <h1 className="bg-primary text-white display-4">React</h1>
         <div className="container">
           <h4 className="my-3">Hooks Sample</h4>
-          <AlertMessage alert={alert} setAlert={setAlert} />
-          <CardMessage card={card} setCard={setCard} />
+          <Sample5AlertMessage alert={alert} setAlert={setAlert} />
+          <Sample5CardMessage card={card} setCard={setCard} />
           <hr />
           <div className="text-right">
             <p>{alert}</p>
@@ -26,7 +112,7 @@ function App() {
 
 }
 
-function AlertMessage(props) {
+function Sample5AlertMessage(props) {
   const data = ["Hello!", "Welcome...", "Good-Bye?"]
 
   const actionAlert = () => {
@@ -44,7 +130,7 @@ function AlertMessage(props) {
   )
 }
 
-function CardMessage(props) {
+function Sample5CardMessage(props) {
   const [count, setCount] = useState(0)
 
   const actionCard = () => {
